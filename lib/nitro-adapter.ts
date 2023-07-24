@@ -1,13 +1,13 @@
 import { AnyRouter, inferRouterContext } from "@trpc/server";
 import { CreateHTTPContextOptions } from "@trpc/server/adapters/standalone";
 import { CreateWSSContextFnOptions, applyWSSHandler } from "@trpc/server/adapters/ws";
-import { WebSocketServer } from "ws";
+import type { HTTPBaseHandlerOptions } from "@trpc/server/dist/http/types";
 import { resolveHTTPResponse } from "@trpc/server/http";
-import type { HTTPBaseHandlerOptions } from "@trpc/server/dist/http/internals/types";
 import dayjs from "dayjs";
 import { eventHandler, isMethod, readBody, setResponseHeaders } from "h3";
 import Redis from "ioredis";
 import { createURL } from "ufo";
+import { WebSocketServer } from "ws";
 
 const cacheKey = (...args: string[]): string => {
     return args.join("-");
@@ -76,7 +76,6 @@ export function createNitroAdapter<
         if (result?.headers) {
             const headers = { ...result.headers } as Record<string, string | string[]>;
             Object.entries(headers).forEach(
-                // rome-ignore lint/performance/noDelete:
                 ([key, value]) => value === undefined && delete headers[key],
             );
             setResponseHeaders(event, headers);

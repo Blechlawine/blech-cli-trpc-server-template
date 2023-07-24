@@ -10,7 +10,7 @@ export const AppRouter = router({
             const timer = setInterval(() => {
                 emit.next({ randomNumber: Math.random() });
             }, 1000);
-            
+
             return () => {
                 clearInterval(timer);
             };

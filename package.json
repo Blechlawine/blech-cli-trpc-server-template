@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "nitropack dev",
         "build": "nitropack build",
-        "preview": "node ./.output/server/index.mjs"
+        "preview": "node ./.output/server/index.mjs",
+        "format": "rome format --write ."
     },
     "devDependencies": {
         "@types/node": "^18.17.0",

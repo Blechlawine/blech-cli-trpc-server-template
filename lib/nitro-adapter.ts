@@ -30,9 +30,9 @@ export function createNitroAdapter<
             expire?: number;
             // TODO: specify include option, to only include certain paths
         };
-		ws?: {
-			port?: number; // default 3001
-		}
+        ws?: {
+            port?: number; // default 3001
+        };
     } & HTTPBaseHandlerOptions<TRouter, TRequest>,
 ) {
     const { createContext, router, endpoint, ws: websocketOptions } = opts;
